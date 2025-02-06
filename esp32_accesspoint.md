@@ -1,12 +1,12 @@
 - install arduino IDE
 - Go to File > Preferences
 - Add the following URL in the "Additional Board Manager URLs" field:
-'''
+``` 
 https://dl.espressif.com/dl/package_esp32_index.json
-'''
+``` 
 - Tools > Board > Boards Manager, search for "ESP32", and install the package
 - add the following code to the IDE
-'''
+``` 
 #include <WiFi.h>
 
 // SSID and Password for the Access Point
@@ -30,7 +30,7 @@ void loop() {
   // Nothing to do here
 }
 
-'''
+``` 
 - Go to Tools > Board, and select your ESP32
 - Tools > Port and select the port associated with your ESP32	
 	- if the board doesnt appear maybe its necessary to install the CP210x drivers

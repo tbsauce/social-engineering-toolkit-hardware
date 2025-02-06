@@ -1,6 +1,6 @@
 - follow instructions on the https://github.com/dbisu/pico-ducky
 - if u want to use normla code and not ducky script after all the instructions remove the 3 last files for the code and add this 
-```python
+``` python
 import time
 import usb_hid
 from adafruit_hid.keyboard import Keyboard
@@ -30,7 +30,7 @@ time.sleep(1)  # Wait for Notepad to open
 layout.write("Hello, World!")
 keyboard.press(Keycode.ENTER)
 keyboard.release_all()
-```
+``` 
 
 
 - make sure the file is names code.py
