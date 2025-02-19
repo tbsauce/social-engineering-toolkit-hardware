@@ -3,6 +3,7 @@
   - before processiding with the install make sure u have the file /etc/rc.local
   - if not do 'vim /etc/rc.local'
   - add a line exit 0
+  - add #!/bin/bash
   - sudo chmod +x /etc/rc.local
   - sudo systemctl daemon-reload
   - sudo systemctl enable rc-local
