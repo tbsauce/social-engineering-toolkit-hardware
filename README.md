@@ -12,7 +12,7 @@ By experimenting with these tools and techniques, users can enhance their securi
 
 ---
 
-## Supported Hardware
+# Supported Hardware
 The toolkit supports various hardware devices, each capable of executing different attack techniques:
 
 - [Raspberry Pi Pico](https://github.com/tbsauce/social-engineering-hardware-toolkit/tree/main/raspberry_pi_pico) 
@@ -37,19 +37,19 @@ This attack creates a rogue Wi-Fi access point that mimics a legitimate network.
 - **Hardware:**
   - [Raspberry Pi 5](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/raspberry_pi_5/evil_twin.md)
 
-### Rogue Router (With Internet Access)
+## Rogue Router (With Internet Access)
 This attack involves setting up a rogue router that users unknowingly connect to. The attacker can monitor network traffic, analyze connection statistics, and gather intelligence on connected devices.
 
 - **Hardware:**
   - Raspberry Pi 5
 
-### Rogue Router (Without Internet Access)
+## Rogue Router (Without Internet Access)
 This attack sets up a rogue router (public or private) for monitoring connection attempts. It helps collect important data, such as the number of devices attempting to connect, without providing actual internet access.
 
 - **Hardware:**
   - [ESP32](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/esp32/rogue_router_no_internet.md)
 
-### Deauthentication Attack
+## Deauthentication Attack
 This technique forcefully disconnects users from Wi-Fi access points, causing network disruption and opening opportunities for further exploitation.
 
 - **Hardware:**
