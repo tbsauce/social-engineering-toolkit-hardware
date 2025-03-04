@@ -131,7 +131,7 @@ sudo chmod +x /etc/rc.local
 ``` 
 sudo iptables-restore < /etc/iptables.ipv4.nat
 ``` 
-
+- sudo systemctl unmask hostapd
 - sudo systemctl start hostapd
 - sudo systemctl start dnsmasq
 ``` 
