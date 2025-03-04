@@ -70,7 +70,7 @@
 
 ### Step 3: Run Payload
 
-1. Run the reverse shell script to establish a connection.
+1. Run the reverse shell [script](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/raspberry_pi_zero/scripts/keystroke_zero.py) to establish a connection.
 
 ### Step 4: Make payload run on boot
 

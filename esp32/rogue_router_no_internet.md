@@ -1,96 +1,33 @@
+# Requirements  
 
-- install arduino IDE
-- Go to File > Preferences
-- Add the following URL in the "Additional Board Manager URLs" field:
-``` 
-https://dl.espressif.com/dl/package_esp32_index.json
-``` 
-- Tools > Board > Boards Manager, search for "ESP32", and install the package
-- add the following code to the IDE
-``` 
-#include <WiFi.h>
-#include "esp_wifi.h"
-#include <Preferences.h>
+- ESP32  
+- Micro USB to USB-A adapter  
 
-// SSID and Password for the Access Point
-const char* ssid = "ESP32-Access-Point";
-const char* password = "";
+---
 
-// Preferences object for non-volatile memory storage
-Preferences preferences;
+# Setup Guide  
 
-// Helper function to convert MAC address to string
-String MacToStr(const uint8_t *mac) {
-  String macStr = "";
-  for (int i = 0; i < 6; i++) {
-    macStr += String(mac[i], HEX);
-    if (i < 5) macStr += ":";
-  }
-  return macStr;
-}
+### Step 1: Install Arduino IDE  
+1. Download and install [Arduino IDE](https://www.arduino.cc/en/software).  
 
-void setup() {
-  Serial.begin(115200);
-  Serial.println("Setting up Access Point...");
+### Step 2: Add ESP32 Board Support  
+1. Open **Arduino IDE** and navigate to `File > Preferences`.  
+2. In the `Additional Board Manager URLs` field, add the following URL:  
+    - https://dl.espressif.com/dl/package_esp32_index.json
 
-  // Start the Access Point
-  WiFi.softAP(ssid, password);
+### Step 3: Install ESP32 Board Package  
+1. Go to `Tools > Board > Boards Manager`.  
+2. Search for `ESP32` and install the package by **Espressif Systems**.  
 
-  // Initialize Preferences
-  preferences.begin("wifi", false);
+### Step 4: Configure the Board  
+1. Open `Tools > Board` and select your **ESP32 model**.  
+2. Go to `Tools > Port` and select the port associated with your ESP32.  
+- If your board doesn't appear, you may need to install the **CP210x drivers** from [Silicon Labs](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers).  
 
-  // Retrieve the stored count from Preferences
-  int stored_count = preferences.getInt("connected_count", 0); // Default to 0 if not found
-  Serial.print("Stored connected count: ");
-  Serial.println(stored_count);
+### Step 5: Upload Code  
+1. Add the ESP32 [code](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/esp32/scripts/device_logs.ino) to the Arduino IDE.  
+2. Click **Upload** to flash the code to your ESP32.
 
-  // Display the IP Address of the Access Point
-  IPAddress IP = WiFi.softAPIP();
-  Serial.print("Access Point IP Address: ");
-  Serial.println(IP);
-
-  // Wait for some time to let stations connect
-  delay(5000);
-}
-
-void loop() {
-  // Get the list of connected stations
-  wifi_sta_list_t station_list;
-  esp_wifi_ap_get_sta_list(&station_list);  // Get list of connected stations
-  
-  // Display the number of connected devices
-  int num_stations = station_list.num;
-  Serial.print("Number of devices connected: ");
-  Serial.println(num_stations);
-
-  // Retrieve the stored list of connected MAC addresses from Preferences
-  String stored_macs = preferences.getString("mac_addresses", "");
-  int old_count = preferences.getInt("connected_count", 0);
-  Serial.print("Total connected MACs: ");
-  Serial.println(stored_macs);
-  Serial.print("Total connected count: ");
-  Serial.println(old_count);
-
-  
-  // Loop through the connected stations
-  for (int i = 0; i < num_stations; i++) {
-    String macStr = MacToStr(station_list.sta[i].mac);
-    
-    // Check if the MAC address is already stored
-    if (stored_macs.indexOf(macStr) == -1) {
-      // New device connected, update the count
-      int new_count = old_count + 1;
-      preferences.putInt("connected_count", new_count); // Store the updated count
-      
-      // Add the new MAC address to the stored list
-      stored_macs += macStr + ",";
-      preferences.putString("mac_addresses", stored_macs); // Store the updated MAC list
-    }
-  }
-  delay(5000);  // Update every 5 seconds
-}
-``` 
-- Go to Tools > Board, and select your ESP32
-- Tools > Port and select the port associated with your ESP32	
-	- if the board doesnt appear maybe its necessary to install the CP210x drivers
-
+### Step 6: Get Ouput
+1. Open `Tools > Serial Monitor`.  
+2. Select the baudrate of `115200`.    

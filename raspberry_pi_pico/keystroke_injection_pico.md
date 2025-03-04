@@ -12,7 +12,8 @@
 # Setup Guide
 
 ### Step 1: Prevent Accidental Execution
-Before setting up, connect **pin 1 (GP0) to pin 3 (GND)** on your Raspberry Pi Pico. This prevents the device from injecting payloads into your current machine.
+1. Connect **pin 1 (GP0) to pin 3 (GND)** on your Raspberry Pi Pico. 
+    - This prevents the device from injecting payloads into your current machine.
 
 ### Step 2: Install CircuitPython
 1. Download the appropriate `.uf2` firmware for your Raspberry Pi Pico:
@@ -56,6 +57,5 @@ git clone https://github.com/dbisu/pico-ducky.git
 
 ### Step 2: Run payload
 1. Run the reverse shell script to establish a connection.
-    - uncomment the right payload foe windows or linux
-    - ducky script url for ducky script
-    - pythn yurl for python scripts
+    - [Ducky Script](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/raspberry_pi_pico/scripts/keystroke_duckyscript.dd)
+    - [Python](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/raspberry_pi_pico/scripts/keystroke_pico.py)
