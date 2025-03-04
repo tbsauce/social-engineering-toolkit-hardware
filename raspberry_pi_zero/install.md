@@ -41,7 +41,7 @@ sudo reboot
 ```
 # Reverse Shell attack
 
-- Setup the Reverse Shell Server
+- Setup the [Reverse Shell Server](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/server/reverseshell.md)
 
 - create a link on the server and run the following script
 ```python
