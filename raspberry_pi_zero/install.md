@@ -41,6 +41,9 @@ sudo reboot
 ```
 # Reverse Shell attack
 
+- Setup the Reverse Shell Server
+
+- create a link on the server and run the following script
 ```python
 from zero_hid import Keyboard, KeyCodes
 from zero_hid.hid import keycodes
