@@ -22,39 +22,38 @@ The toolkit supports various hardware devices, each capable of executing differe
 
 ---
 
-## Attack Techniques
+# Attack Techniques
 Below are the primary attack methodologies supported by this toolkit:
 
-### Keystroke Injection
+## Keystroke Injection
 This technique uses hardware to simulate a keyboard or mouse, allowing for automated execution of malicious payloads, such as reverse shells, to infiltrate a target machine.
 - **Hardware:**
-  - [Raspberry Pi Pico](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/raspberry_pi_pico/install.md)
-  - [Raspberry Pi Zero](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/raspberry_pi_zero/install.md)
+  - [Raspberry Pi Pico](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/raspberry_pi_pico/keystroke_injection_pico.md)
+  - [Raspberry Pi Zero](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/raspberry_pi_zero/keystroke_injection_zero.md)
 
-### Evil Twin Attack
+## Evil Twin Attack
+This attack creates a rogue Wi-Fi access point that mimics a legitimate network. When users connect, their credentials are intercepted and stored. The stolen passwords can later be cracked using tools like Hashcat.
+
 - **Hardware:**
-  - [Raspberry Pi 5](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/raspberry_pi_5/install.md)
-- **Description:**
-  - This attack creates a rogue Wi-Fi access point that mimics a legitimate network. When users connect, their credentials are intercepted and stored. The stolen passwords can later be cracked using tools like Hashcat.
+  - [Raspberry Pi 5](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/raspberry_pi_5/evil_twin.md)
 
 ### Rogue Router (With Internet Access)
+This attack involves setting up a rogue router that users unknowingly connect to. The attacker can monitor network traffic, analyze connection statistics, and gather intelligence on connected devices.
+
 - **Hardware:**
   - Raspberry Pi 5
-- **Description:**
-  - This attack involves setting up a rogue router that users unknowingly connect to. The attacker can monitor network traffic, analyze connection statistics, and gather intelligence on connected devices.
 
 ### Rogue Router (Without Internet Access)
+This attack sets up a rogue router (public or private) for monitoring connection attempts. It helps collect important data, such as the number of devices attempting to connect, without providing actual internet access.
+
 - **Hardware:**
-  - [ESP32](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/esp32/acesspoint_countofdeives.md)
-- **Description:**
-  - This attack sets up a rogue router (public or private) for monitoring connection attempts. It helps collect important data, such as the number of devices attempting to connect, without providing actual internet access.
+  - [ESP32](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/esp32/rogue_router_no_internet.md)
 
 ### Deauthentication Attack
-- **Hardware:**
-  - [ESP32](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/esp32/install.md)
-- **Description:**
-  - This technique forcefully disconnects users from Wi-Fi access points, causing network disruption and opening opportunities for further exploitation.
+This technique forcefully disconnects users from Wi-Fi access points, causing network disruption and opening opportunities for further exploitation.
 
+- **Hardware:**
+  - [ESP32](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/esp32/wifi_deauth_attack.md)
 ---
 
 # Disclaimer
