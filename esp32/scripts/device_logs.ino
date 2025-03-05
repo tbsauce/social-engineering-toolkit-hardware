@@ -4,12 +4,12 @@
 
 // SSID and Password for the Access Point
 const char* ssid = "ESP32-Access-Point";
-const char* password = "";
+const char* password = ""; // "" -> no password
 
-// Preferences object for non-volatile memory storage
+// Preferences object to store data on flash memory
 Preferences preferences;
 
-// Helper function to convert MAC address to string
+// Function to convert MAC address to string
 String MacToStr(const uint8_t *mac) {
   String macStr = "";
   for (int i = 0; i < 6; i++) {
@@ -26,11 +26,11 @@ void setup() {
   // Start the Access Point
   WiFi.softAP(ssid, password);
 
-  // Initialize Preferences
+  // Initialize Preferences as read/write(false) mode
   preferences.begin("wifi", false);
 
   // Retrieve the stored count from Preferences
-  int stored_count = preferences.getInt("connected_count", 0); // Default to 0 if not found
+  int stored_count = preferences.getInt("connected_count", 0); 
   Serial.print("Stored connected count: ");
   Serial.println(stored_count);
 
@@ -39,24 +39,23 @@ void setup() {
   Serial.print("Access Point IP Address: ");
   Serial.println(IP);
 
-  // Wait for some time to let stations connect
-  delay(5000);
+  delay(5000); // 5 seconds
 }
 
 void loop() {
   // Get the list of connected stations
   wifi_sta_list_t station_list;
-  esp_wifi_ap_get_sta_list(&station_list);  // Get list of connected stations
+  esp_wifi_ap_get_sta_list(&station_list); 
   
   // Display the number of connected devices
   int num_stations = station_list.num;
-  Serial.print("Number of devices connected: ");
+  Serial.print("Number of devices currently connected: ");
   Serial.println(num_stations);
 
   // Retrieve the stored list of connected MAC addresses from Preferences
   String stored_macs = preferences.getString("mac_addresses", "");
   int old_count = preferences.getInt("connected_count", 0);
-  Serial.print("Total connected MACs: ");
+  Serial.println("Total connected MACs: ");
   Serial.println(stored_macs);
   Serial.print("Total connected count: ");
   Serial.println(old_count);
@@ -64,18 +63,18 @@ void loop() {
   
   // Loop through the connected stations
   for (int i = 0; i < num_stations; i++) {
-    String macStr = MacToStr(station_list.sta[i].mac);
-    
-    // Check if the MAC address is already stored
-    if (stored_macs.indexOf(macStr) == -1) {
-      // New device connected, update the count
-      int new_count = old_count + 1;
-      preferences.putInt("connected_count", new_count); // Store the updated count
+      String macStr = MacToStr(station_list.sta[i].mac);
       
-      // Add the new MAC address to the stored list
-      stored_macs += macStr + ",";
-      preferences.putString("mac_addresses", stored_macs); // Store the updated MAC list
-    }
+      // Check if the MAC address is already stored
+      if (stored_macs.indexOf(macStr) == -1) {
+          // Update the count
+          int new_count = old_count + 1;
+          preferences.putInt("connected_count", new_count); 
+          
+          // Add new MAC address
+          stored_macs += macStr + ",";
+          preferences.putString("mac_addresses", stored_macs); 
+      }
   }
-  delay(5000);  // Update every 5 seconds
+  delay(5000);  // 5 seconds
 }

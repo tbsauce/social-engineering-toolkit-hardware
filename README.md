@@ -41,7 +41,7 @@ This attack creates a rogue Wi-Fi access point that mimics a legitimate network.
 This attack involves setting up a rogue router that users unknowingly connect to. The attacker can monitor network traffic, analyze connection statistics, and gather intelligence on connected devices.
 
 - **Hardware:**
-  - Raspberry Pi 5
+  - [Raspberry Pi 5](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/raspberry_pi_5/rougue_router.md)
 
 ## Rogue Router (Without Internet Access)
 This attack sets up a rogue router (public or private) for monitoring connection attempts. It helps collect important data, such as the number of devices attempting to connect, without providing actual internet access.

@@ -1,31 +1,42 @@
+# Requirements
 
-- Prepare the Raspberry Pi
-- install packages 
-``` 
+- Raspberry Pi 5
+- Micro USB to USB-A adapter
+- WiFi dongle
+
+---
+
+# Setup: Server
+
+### Step 1: Update and Install Necessary Packages
+```
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y hostapd dnsmasq iptables wireless-tools
-``` 
-- Disable hostapd and dnsmasq
-``` 
+```
+
+### Step 2: Disable Services Temporarily
+```
 sudo systemctl stop hostapd
 sudo systemctl stop dnsmasq
-``` 
-- veify that u have 2 wlan
+```
 
-``` 
+### Step 3: Verify WiFi Interfaces
+- Ensure that two WiFi interfaces are available:
+```
 iw dev
-``` 
-- ensure support for AP
-
-``` 
+```
+- Check for Access Point support:
+```
 iw list | grep -A 10 "Supported interface modes"
-``` 
-- Configure the Rogue Access Point
-``` 
-sudo vim /etc/hostapd/hostapd.conf
-``` 
+```
 
-``` 
+### Step 4: Configure the Rogue Access Point
+1. Open the hostapd configuration file:
+```
+sudo vim /etc/hostapd/hostapd.conf
+```
+2. Add the following configuration:
+```
 interface=wlan1
 driver=nl80211
 ssid=RogueAP
@@ -36,111 +47,113 @@ wpa=2
 wpa_passphrase=Rogue12345
 wpa_key_mgmt=WPA-PSK
 rsn_pairwise=CCMP
-``` 
+```
 
-- Configure hostapd Service
-
-``` 
+### Step 5: Configure hostapd Service
+1. Edit the default hostapd file:
+```
 sudo vim /etc/default/hostapd
-``` 
-- change a line to
-``` 
+```
+2. Modify the line to:
+```
 DAEMON_CONF="/etc/hostapd/hostapd.conf"
-``` 
+```
 
-``` 
-sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.bak 
-``` 
-``` 
+### Step 6: Configure DHCP
+1. Backup existing configuration:
+```
+sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.bak
+```
+2. Create a new configuration file:
+```
 sudo vim /etc/dnsmasq.conf
-``` 
-
-- add 
-``` 
+```
+3. Add the following lines:
+```
 interface=wlan1
 dhcp-range=192.168.50.10,192.168.50.100,255.255.255.0,24h
-``` 
--  Enable Internet Sharing
-	
-	- Verify if dhcpcd is installed:
-	``` 
-	dpkg -l | grep dhcpcd
-	``` 
-	- if not 
-	``` 
-	sudo apt install dhcpcd5 -y
-	sudo systemctl enable dhcpcd
-	sudo systemctl restart dhcpcd
-	``` 
+```
 
-``` 
+### Step 7: Enable Internet Sharing
+1. Verify if `dhcpcd` is installed:
+```
+dpkg -l | grep dhcpcd
+```
+2. If not installed, install and restart:
+```
+sudo apt install dhcpcd5 -y
+sudo systemctl enable dhcpcd
+sudo systemctl restart dhcpcd
+```
+3. Configure a static IP for `wlan1`:
+```
 sudo vim /etc/dhcpcd.conf
-``` 
-``` 
+```
+4. Add:
+```
 interface wlan1
     static ip_address=192.168.50.1/24
     nohook wpa_supplicant
-``` 
-``` 
+```
+5. Restart `dhcpcd`:
+```
 sudo service dhcpcd restart
-``` 
+```
 
-
-- Set Up NAT with iptables
-
-``` 
+### Step 8: Set Up NAT with iptables
+1. Enable IP forwarding:
+```
 sudo vim /etc/sysctl.conf
-``` 
-
-- uncomment 
-``` 
+```
+2. Uncomment the line:
+```
 net.ipv4.ip_forward=1
-``` 
-
-- Apply the change immediately:
-
-``` 
+```
+3. Apply the change immediately:
+```
 sudo sysctl -w net.ipv4.ip_forward=1
-``` 
-
-
-- Add NAT rules for forwarding:
-``` 
+```
+4. Add NAT rules:
+```
 sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
 sudo iptables -A FORWARD -i wlan1 -o wlan0 -j ACCEPT
 sudo iptables -A FORWARD -i wlan0 -o wlan1 -j ACCEPT
-``` 
-
-- Save the rules to persist:
-``` 
+```
+5. Save the rules:
+```
 sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"
-``` 
-
+```
+6. Configure persistence:
 ```
 sudo vim /etc/rc.local
 ```
-
-``` 
+7. Add:
+```
 iptables-restore < /etc/iptables.ipv4.nat
-
 exit 0
-``` 
-``` 
+```
+8. Make `rc.local` executable:
+```
 sudo chmod +x /etc/rc.local
-``` 
-
-``` 
+```
+9. Restore iptables:
+```
 sudo iptables-restore < /etc/iptables.ipv4.nat
-``` 
-- sudo systemctl unmask hostapd
-- sudo systemctl start hostapd
-- sudo systemctl start dnsmasq
-``` 
+```
+
+### Step 9: Start Services
+```
+sudo systemctl unmask hostapd
+sudo systemctl start hostapd
+sudo systemctl start dnsmasq
 sudo systemctl enable hostapd
 sudo systemctl enable dnsmasq
-``` 
+```
 
-- verify setup
-``` 
+### Step 10: Verify Setup
+```
 sudo iw dev wlan1 info
-``` 
+```
+
+### Step 11: Run the Script
+1. Execute your [script](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/raspberry_pi_5/scripts/device_logs.py) to finalize the setup.

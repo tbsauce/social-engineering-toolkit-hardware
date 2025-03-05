@@ -17,24 +17,24 @@
 ### Step 2: Connect and Access the Pi
 1. Find the Raspberry Pi's IP address by checking your router's domain settings.
 2. SSH into the device:
-   ```sh
+   ```
    ssh pi@<Raspberry_Pi_IP>
    ```
 
 ### Step 3: Install Dependencies
 1. Update package lists and install required dependencies:
-   ```sh
+   ```
    sudo apt-get update
    sudo apt-get install -y git vim python3-pip python3-venv
    ```
 
 ### Step 4: Set Up USB Gadget Mode
 1. Clone the required repository:
-   ```sh
+   ```
    git clone https://github.com/thewh1teagle/zero-hid
    ```
 2. Navigate to the `usb_gadget` directory and run the installer:
-   ```sh
+   ```
    cd zero-hid/usb_gadget
    sudo ./installer
    ```
@@ -42,7 +42,7 @@
 
 ### Step 5: Create a Virtual Environment
 1. Set up a Python virtual environment and install `zero-hid`:
-   ```sh
+   ```
    python3 -m venv ~/venv
    source ~/venv/bin/activate
    pip3 install zero-hid
@@ -59,7 +59,7 @@
 
 ### Step 2: Initialize rc.local
 1. Set up the `rc.local` file:
-   ```sh
+   ```
    sudo bash -c 'echo "#!/bin/bash" > /etc/rc.local'
    sudo bash -c 'echo "exit 0" >> /etc/rc.local'
    sudo chmod +x /etc/rc.local
