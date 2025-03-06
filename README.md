@@ -1,6 +1,6 @@
-# Social Engineering Hardware Toolkit
+# Social Engineering Toolkit Hardware 
 
-Welcome to the **Social Engineering Hardware Toolkit**, a comprehensive resource for documenting penetration testing tools, payloads, and attack techniques related to physical social engineering threats. This repository explores hardware-based attack vectors such as keyloggers, rogue routers, and other physical intrusion methods.
+Welcome to the **Social Engineering Toolkit Hardware**, a comprehensive resource for documenting penetration testing tools, payloads, and attack techniques related to physical social engineering threats. This repository explores hardware-based attack vectors such as keyloggers, rogue routers, and other physical intrusion methods.
 
 ## Purpose
 The goal of this toolkit is to provide an open and accessible platform for security researchers, ethical hackers, and cybersecurity enthusiasts to:
