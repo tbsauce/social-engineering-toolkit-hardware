@@ -9,18 +9,21 @@
 # Setup: Server
 
 ### Step 1: Update and Install Necessary Packages
+
 ```
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y hostapd dnsmasq iptables wireless-tools
 ```
 
 ### Step 2: Disable Services Temporarily
+
 ```
 sudo systemctl stop hostapd
 sudo systemctl stop dnsmasq
 ```
 
 ### Step 3: Verify WiFi Interfaces
+
 - Ensure that two WiFi interfaces are available:
 ```
 iw dev
@@ -31,6 +34,7 @@ iw list | grep -A 10 "Supported interface modes"
 ```
 
 ### Step 4: Configure the Rogue Access Point
+
 1. Open the hostapd configuration file:
 ```
 sudo vim /etc/hostapd/hostapd.conf
@@ -50,6 +54,7 @@ rsn_pairwise=CCMP
 ```
 
 ### Step 5: Configure hostapd Service
+
 1. Edit the default hostapd file:
 ```
 sudo vim /etc/default/hostapd
@@ -60,6 +65,7 @@ DAEMON_CONF="/etc/hostapd/hostapd.conf"
 ```
 
 ### Step 6: Configure DHCP
+
 1. Backup existing configuration:
 ```
 sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.bak
@@ -75,6 +81,7 @@ dhcp-range=192.168.50.10,192.168.50.100,255.255.255.0,24h
 ```
 
 ### Step 7: Enable Internet Sharing
+
 1. Verify if `dhcpcd` is installed:
 ```
 dpkg -l | grep dhcpcd
@@ -101,6 +108,7 @@ sudo service dhcpcd restart
 ```
 
 ### Step 8: Set Up NAT with iptables
+
 1. Enable IP forwarding:
 ```
 sudo vim /etc/sysctl.conf
@@ -142,6 +150,7 @@ sudo iptables-restore < /etc/iptables.ipv4.nat
 ```
 
 ### Step 9: Start Services
+
 ```
 sudo systemctl unmask hostapd
 sudo systemctl start hostapd
@@ -151,9 +160,11 @@ sudo systemctl enable dnsmasq
 ```
 
 ### Step 10: Verify Setup
+
 ```
 sudo iw dev wlan1 info
 ```
 
 ### Step 11: Run the Script
+
 1. Execute your [script](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/raspberry_pi_5/scripts/device_logs.py) to finalize the setup.
