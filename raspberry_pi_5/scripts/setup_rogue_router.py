@@ -35,16 +35,16 @@ def setup_rogue_ap():
     # Step 5: Configure Rogue Access Point
     with open('/etc/hostapd/hostapd.conf', 'w') as f:
         f.write(f"""interface={wlanAP}
-                driver=nl80211
-                ssid={AP_SSID}
-                hw_mode=g
-                channel=6
-                auth_algs=1
-                wpa=2
-                wpa_passphrase={AP_PASSWORD}
-                wpa_key_mgmt=WPA-PSK
-                rsn_pairwise=CCMP
-                """)
+driver=nl80211
+ssid={AP_SSID}
+hw_mode=g
+channel=6
+auth_algs=1
+wpa=2
+wpa_passphrase={AP_PASSWORD}
+wpa_key_mgmt=WPA-PSK
+rsn_pairwise=CCMP
+""")
 
     # Step 6: Configure hostapd Service
     with open('/etc/default/hostapd', 'w') as f:

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "server/reverseshell.md",
+                "file": "raspberry_pi_5/rougue_router.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "reverseshell"
+              "title": "rougue_router"
             }
           }
         ]
@@ -170,12 +170,13 @@
   },
   "active": "94f7f865e0f83e93",
   "lastOpenFiles": [
+    "raspberry_pi_5/evil_twin.md",
+    "server/reverseshell.md",
     "README.md",
     "raspberry_pi_zero/keystroke_injection_zero.md",
     "esp32/rogue_router_no_internet.md",
     "esp32/wifi_deauth_attack.md",
     "nano/setup.md",
-    "raspberry_pi_5/evil_twin.md",
     "raspberry_pi_5/rougue_router.md",
     "raspberry_pi_pico/keystroke_injection_pico.md",
     "raspberrypisetup.md"
