@@ -5,8 +5,13 @@
 - WiFi dongle
 
 ---
+# setup
 
-# Setup: Server
+```
+curl -sSL https://raw.githubusercontent.com/tbsauce/social-engineering-toolkit-hardware/main/raspberry_pi_5/scripts/setup_rogue_router.py | sudo python3
+```
+
+# Manual Setup: AP 
 
 ### Step 1: Update and Install Necessary Packages
 
