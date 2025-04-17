@@ -50,6 +50,25 @@ git clone https://github.com/dbisu/pico-ducky.git
 3. Write a [Ducky Script](https://github.com/hak5/usbrubberducky-payloads) inside `payload.dd`.
 4. If you prefer Python scripts instead of Ducky Script, modify the `code.py` file.
 
+### Step 5: Configure Keyboard Layout
+
+1. Go to [neradoc's keyboard layout page](https://www.neradoc.me/layouts/).
+2. Download the layout for your language and unzip the folder.
+3. Locate the following files in the downloaded folder:
+   - `keyboard_layout_win_LANG.py`
+   - `keycode_win_LANG.py`
+4. Copy both files into the `lib/` directory on your Raspberry Pi Pico.
+5. Open the `ducky_in_python.py` or `code.py` file and update the import statements:
+   ```python
+   # Comment out or remove these lines (for US layout):
+   # from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS as KeyboardLayout
+   # from adafruit_hid.keycode import Keycode
+
+   # Replace them with:
+   from keyboard_layout_win_LANG import KeyboardLayout
+   from keycode_win_LANG import Keycode
+```
+
 # Payloads
 
 ### Step 1: Set Up Reverse Shell Server
