@@ -4,7 +4,7 @@
 #include <Preferences.h>
 
 // SSID and Password for the Access Point
-const char* ssid = "ESP32-Access-Point";
+const char* ssid = "McDonald’s Wi-Fi";
 const char* password = ""; // "" -> no password
 
 IPAddress IP;

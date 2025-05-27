@@ -33,7 +33,12 @@
 1. Add the ESP8266 [code](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/esp8266/scripts/device_logs.ino) to the Arduino IDE.  
 2. Click **Upload** to flash the code to your ESP8266.
 
-### Step 6: Get Ouput
+### Step 6: View Ouput
 
+#### Option 1:
 1. Open `Tools > Serial Monitor`.  
 2. Select the baudrate of `115200`.    
+
+#### Option 2:
+1. Connect to the Wi-Fi network created by the device.
+2. Open a web browser and go to `http://192.168.4.1`.

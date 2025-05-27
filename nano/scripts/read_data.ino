@@ -7,7 +7,7 @@
 #include <MFRC522Debug.h>
 
 // WiFi Access Point
-const char* ssid = "ESP32-Access-Point";
+const char* ssid = "RFID-Access-Point";
 const char* password = "";
 
 Preferences preferences;
