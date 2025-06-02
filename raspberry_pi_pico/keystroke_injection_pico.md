@@ -67,7 +67,7 @@ git clone https://github.com/dbisu/pico-ducky.git
    # Replace them with:
    from keyboard_layout_win_LANG import KeyboardLayout
    from keycode_win_LANG import Keycode
-```
+   ```
 
 # Payloads
 
