@@ -18,45 +18,60 @@ This toolkit is intended for educational and ethical testing purposes only. Unau
 # Supported Hardware
 The toolkit supports various hardware devices, each capable of executing different attack techniques:
 
-- [Raspberry Pi Pico](https://github.com/tbsauce/social-engineering-hardware-toolkit/tree/main/raspberry_pi_pico) 
-- [Raspberry Pi Zero](https://github.com/tbsauce/social-engineering-hardware-toolkit/tree/main/raspberry_pi_zero)
-- [Raspberry Pi 5](https://github.com/tbsauce/social-engineering-hardware-toolkit/tree/main/raspberry_pi_5) 
-- [ESP32](https://github.com/tbsauce/social-engineering-hardware-toolkit/tree/main/esp32) 
+- [Raspberry Pi Pico](https://mauser.pt/catalog/product_info.php?products_id=096-9421) 
+- [Raspberry Pi Zero](https://mauser.pt/catalog/product_info.php?products_id=095-1561)
+- [Raspberry Pi 5](https://mauser.pt/catalog/product_info.php?products_id=095-5008) 
+- [ESP32](https://mauser.pt/catalog/product_info.php?products_id=096-7620) 
+- [ESP8266](https://mauser.pt/catalog/product_info.php?products_id=096-8518) 
+- [Arduino Nano ESP32](https://mauser.pt/catalog/product_info.php?products_id=095-2097)
+- [RC522](https://mauser.pt/catalog/product_info.php?products_id=096-8517) 
+- [TP-Link Antena AC1300 Mini](https://www.tp-link.com/pt/home-networking/adapter/archer-t3u/) 
+- [Alfa Antena](https://alfa-network.eu/awus036ach-c) 
+
 
 ---
 
 # Attack Techniques
+
 Below are the primary attack methodologies supported by this toolkit:
 
 ## Keystroke Injection
+
 This technique uses hardware to simulate a keyboard or mouse, allowing for automated execution of malicious payloads, such as reverse shells, to infiltrate a target machine.
-- **Hardware:**
-  - [Raspberry Pi Pico](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/raspberry_pi_pico/keystroke_injection_pico.md)
-  - [Raspberry Pi Zero](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/raspberry_pi_zero/keystroke_injection_zero.md)
+- **Setup:**
+  - [Raspberry Pi Pico](https://github.com/tbsauce/social-engineering-toolkit-hardware/tree/main/raspberry_pi_pico_keystroke_injection)
+  - [Raspberry Pi Zero](https://github.com/tbsauce/social-engineering-toolkit-hardware/tree/main/raspberry_pi_zero_keystroke_injection)
 
 ## Evil Twin Attack
+
 This attack creates a rogue Wi-Fi access point that mimics a legitimate network. When users connect, their credentials are intercepted and stored. The stolen passwords can later be cracked using tools like Hashcat.
 
-- **Hardware:**
-  - [Raspberry Pi 5](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/raspberry_pi_5/evil_twin.md)
+- **Setup:**
+  - [Raspberry Pi 5](https://github.com/tbsauce/social-engineering-toolkit-hardware/tree/main/raspberry_pi_5_evil_twin)
+  
+## Rogue Router
 
-## Rogue Router (With Internet Access)
-This attack involves setting up a rogue router that users unknowingly connect to. The attacker can monitor network traffic, analyze connection statistics, and gather intelligence on connected devices.
+This attack involves setting up a rogue router, which can be either public or private, to monitor connection attempts from nearby devices. It collects important data, such as the number of devices trying to connect, allowing the ethical hacker to analyze connection statistics and gather intelligence on the devices attempting to use the network.
 
-- **Hardware:**
-  - [Raspberry Pi 5](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/raspberry_pi_5/rougue_router.md)
-
-## Rogue Router (Without Internet Access)
-This attack sets up a rogue router (public or private) for monitoring connection attempts. It helps collect important data, such as the number of devices attempting to connect, without providing actual internet access.
-
-- **Hardware:**
-  - [ESP32](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/esp32/rogue_router_no_internet.md)
+- **Setup:**
+  - [ESP32](https://github.com/tbsauce/social-engineering-toolkit-hardware/tree/main/esp32_rogue_router)
+  - [ESP8266](hhttps://github.com/tbsauce/social-engineering-toolkit-hardware/tree/main/esp8266_rogue_router)
+  - [Raspberry Pi 5](https://github.com/tbsauce/social-engineering-toolkit-hardware/tree/main/raspberry_pi_5_rogue_router)
 
 ## Deauthentication Attack
+
 This technique forcefully disconnects users from Wi-Fi access points, causing network disruption and opening opportunities for further exploitation.
 
-- **Hardware:**
-  - [ESP32](https://github.com/tbsauce/social-engineering-hardware-toolkit/blob/main/esp32/wifi_deauth_attack.md)
+- **Setup:**
+  - [ESP32](https://github.com/tbsauce/social-engineering-toolkit-hardware/tree/main/esp32_deauther)
+
+## RFID Attack
+
+This attack reads the unique identifiers (UIDs) of scanned RFID cards. By replicating these cards, the ethical hacker can gain unauthorized access to physical locations or systems that rely on RFID-based authentication.
+
+- **Setup:**
+  - [Arduino-nano](https://github.com/tbsauce/social-engineering-toolkit-hardware/tree/main/arduino_nano_rfid_attack)
+
 ---
 
 # Raspberry Pi Conf
@@ -143,7 +158,7 @@ sudo systemctl status dhcpcd
 sudo vim /etc/dhcpcd.conf
 ```
 
-2. Add the following (for a direct Ethernet connection):
+2. Add the following:
 
 ```ini
 interface eth0
@@ -168,22 +183,22 @@ ip a show eth0
 
 ### Step 6: Configure Your Laptop’s Ethernet Port
 
-* **Linux:**
++ **Linux:**
 
 ```
 sudo ip addr add 192.168.1.1/24 dev eth0
 ```
 
-* **Windows:**
++ **Windows:**
 
   1. Go to Control Panel → Network and Sharing Center → Change adapter settings
+
   2. Right-click Ethernet → Properties → IPv4 → Use the following IP address:
 
-     * IP: `192.168.1.1`
-     * Subnet mask: `255.255.255.0`
-     * Gateway: (leave blank)
+    + IP: `192.168.1.1`
+    + Subnet mask: `255.255.255.0`
+    + Gateway: (leave blank)
 
----
 
 ### Step 7: Test the Connection
 
