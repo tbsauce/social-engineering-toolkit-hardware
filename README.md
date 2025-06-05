@@ -55,7 +55,7 @@ This attack involves setting up a rogue router, which can be either public or pr
 
 - **Setup:**
   - [ESP32](https://github.com/tbsauce/social-engineering-toolkit-hardware/tree/main/esp32_rogue_router)
-  - [ESP8266](hhttps://github.com/tbsauce/social-engineering-toolkit-hardware/tree/main/esp8266_rogue_router)
+  - [ESP8266](https://github.com/tbsauce/social-engineering-toolkit-hardware/tree/main/esp8266_rogue_router)
   - [Raspberry Pi 5](https://github.com/tbsauce/social-engineering-toolkit-hardware/tree/main/raspberry_pi_5_rogue_router)
 
 ## Deauthentication Attack
